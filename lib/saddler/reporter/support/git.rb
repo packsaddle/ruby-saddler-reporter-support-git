@@ -1,4 +1,5 @@
 require 'saddler/reporter/support/git/version'
+require 'saddler/reporter/support/git/repository'
 
 module Saddler
   module Reporter
