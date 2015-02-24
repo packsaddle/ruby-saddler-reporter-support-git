@@ -26,7 +26,7 @@ module Saddler
           end
 
           def current_branch
-            @git.current_branch
+            env_current_branch || @git.current_branch
           end
 
           def head
@@ -48,6 +48,14 @@ module Saddler
 
           def github_api_endpoint
             ENV['GITHUB_API_ENDPOINT'] || 'api.github.com'
+          end
+
+          def env_current_branch
+            if ENV['CURRENT_BRANCH']
+              ENV['CURRENT_BRANCH']
+            elsif ENV['TRAVIS_BRANCH']
+              ENV['TRAVIS_BRANCH']
+            end
           end
         end
       end
