@@ -1,3 +1,4 @@
+require 'git'
 require 'saddler/reporter/support/git/version'
 require 'saddler/reporter/support/git/repository'
 
