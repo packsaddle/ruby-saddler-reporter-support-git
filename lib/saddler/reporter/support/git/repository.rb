@@ -33,10 +33,20 @@ module Saddler
           end
 
           def merging_sha
-            return head.sha unless merge_commit?(head)
-            this_sha = head.parents.map(&:sha) - [master.sha, origin_master.sha]
-            return *this_sha if this_sha.count == 1
-            head.sha # fallback
+            merging_object.sha
+          end
+
+          # This for GitHub pull request diff file.
+          # if head is commit which already merged,
+          # head's parent objects include merging object
+          # and (master or origin/master)
+          def merging_object
+            return head unless merge_commit?(head)
+            commit = head.parents.select do |parent|
+              ![master.sha, origin_master.sha].include?(parent.sha)
+            end
+            return commit.last if commit.count == 1
+            head # fallback
           end
 
           def master
