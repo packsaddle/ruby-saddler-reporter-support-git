@@ -18,6 +18,12 @@ module Saddler
               !::Saddler::Reporter::Support::Git::VERSION.nil?
             end
           end
+
+          test '#current_branch' do
+            assert do
+              @repository.current_branch == 'master'
+            end
+          end
         end
       end
     end
