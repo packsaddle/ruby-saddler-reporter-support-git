@@ -1,4 +1,5 @@
 require 'git'
+require 'addressable/uri'
 require 'saddler/reporter/support/git/version'
 require 'saddler/reporter/support/git/repository'
 

@@ -3,26 +3,25 @@ module Saddler
     module Support
       module Git
         class Repository
-          def initialize(path)
-            @git = ::Git.open(path)
+          attr_reader :git
+
+          def initialize(path, options = {})
+            @git = ::Git.open(path, options)
           end
 
           def slug
-            name = /[[:alnum:]_\-\.]*/
-            repo = /[[:alnum:]_\-\.]*/
-            regex_slug = %r{#{name}/#{repo}}
-            regex = /.*?#{Regexp.quote(github_domain)}.*?(?<slug>#{regex_slug})/
-            target = remote_urls.map do |url|
-              match = regex.match(strip_git_extension(url))
+            slug_regex = %r{\A/?(?<slug>.*?)(?:\.git)?\Z}
+            remote_urls.map do |url|
+              uri = Addressable::URI.parse(url)
+              match = slug_regex.match(uri.path)
               match[:slug] if match
             end.compact.first
           end
 
           def remote_urls
             @git
-              .branches
-              .remote
-              .map { |branch| branch.remote.url }
+              .remotes
+              .map(&:url)
           end
 
           def current_branch
@@ -33,21 +32,16 @@ module Saddler
             @git.object('HEAD')
           end
 
-          def strip_git_extension(name)
-            match = /\A(?<identity>.*?)(?:\.git)?\z/.match(name)
-            match[:identity] if match
+          def push_endpoint
+            (env_push_endpoint || 'github.com').chomp('/')
           end
 
-          # FIXME: if endpoint set, this return wrong result
-          def github_domain
-            github_api_endpoint
-              .split('.')
-              .slice(-2, 2)
-              .join('.')
-          end
-
-          def github_api_endpoint
-            ENV['GITHUB_API_ENDPOINT'] || 'api.github.com'
+          # e.g. 'github.com'
+          # git@github.com:packsaddle/ruby-saddler-reporter-support-git.git
+          def env_push_endpoint
+            if ENV['PUSH_ENDPOINT']
+              ENV['PUSH_ENDPOINT']
+            end
           end
 
           def env_current_branch
