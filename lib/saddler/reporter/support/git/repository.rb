@@ -13,7 +13,7 @@ module Saddler
             name = /[[:alnum:]_\-\.]*/
             repo = /[[:alnum:]_\-\.]*/
             regex_slug = %r{#{name}/#{repo}}
-            regex = /.*?#{Regexp.quote(github_domain)}.*?(?<slug>#{regex_slug})/
+            regex = /.*?#{Regexp.quote(push_endpoint)}.*?(?<slug>#{regex_slug})/
             target = remote_urls.map do |url|
               match = regex.match(strip_git_extension(url))
               match[:slug] if match
@@ -40,16 +40,16 @@ module Saddler
             match[:identity] if match
           end
 
-          # FIXME: if endpoint set, this return wrong result
-          def github_domain
-            github_api_endpoint
-              .split('.')
-              .slice(-2, 2)
-              .join('.')
+          def push_endpoint
+            env_push_endpoint || 'github.com'
           end
 
-          def github_api_endpoint
-            ENV['GITHUB_API_ENDPOINT'] || 'api.github.com'
+          # e.g. 'github.com'
+          # git@github.com:packsaddle/ruby-saddler-reporter-support-git.git
+          def env_push_endpoint
+            if ENV['PUSH_ENDPOINT']
+              ENV['PUSH_ENDPOINT']
+            end
           end
 
           def env_current_branch
