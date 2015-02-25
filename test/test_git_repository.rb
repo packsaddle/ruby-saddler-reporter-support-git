@@ -24,6 +24,16 @@ module Saddler
               @repository.current_branch == 'master'
             end
           end
+
+          test '#remote_urls' do
+            assert do
+              @repository.remote_urls \
+                == [
+                  'git://github.com/libgit2/libgit2.git',
+                  'git://github.com/libgit2/rugged.git'
+                ]
+            end
+          end
         end
       end
     end

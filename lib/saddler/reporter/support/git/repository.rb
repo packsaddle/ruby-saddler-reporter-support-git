@@ -22,9 +22,8 @@ module Saddler
 
           def remote_urls
             @git
-              .branches
-              .remote
-              .map { |branch| branch.remote.url }
+              .remotes
+              .map(&:url)
           end
 
           def current_branch
