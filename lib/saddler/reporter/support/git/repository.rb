@@ -10,11 +10,9 @@ module Saddler
           end
 
           def slug
-            name = /[[:alnum:]_\-\.]*/
-            repo = /[[:alnum:]_\-\.]*/
-            regex_slug = %r{#{name}/#{repo}}
-            regex = /.*?#{Regexp.quote(push_endpoint)}.*?(?<slug>#{regex_slug})/
-            target = remote_urls.map do |url|
+            regex_slug = %r{[[:alnum:]_\-\.]*/[[:alnum:]_\-\.]*}
+            regex = %r{.*?#{Regexp.quote(push_endpoint)}/(?<slug>#{regex_slug})}
+            remote_urls.map do |url|
               match = regex.match(strip_git_extension(url))
               match[:slug] if match
             end.compact.first

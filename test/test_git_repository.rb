@@ -34,6 +34,12 @@ module Saddler
                 ]
             end
           end
+
+          test '#slug' do
+            assert do
+              @repository.slug == 'libgit2/libgit2'
+            end
+          end
         end
       end
     end
