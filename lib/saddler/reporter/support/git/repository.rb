@@ -33,7 +33,11 @@ module Saddler
           end
 
           def merging_sha
-            head.sha
+            return head.sha unless merge_commit?(head)
+          end
+
+          def merge_commit?(commit)
+            commit.parents.count == 2
           end
 
           def push_endpoint
