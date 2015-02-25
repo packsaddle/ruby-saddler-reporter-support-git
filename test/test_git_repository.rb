@@ -35,9 +35,31 @@ module Saddler
             end
           end
 
-          test '#slug' do
-            assert do
-              @repository.slug == 'libgit2/libgit2'
+          sub_test_case 'fixture and #slug' do
+            test 'fixture #slug' do
+              assert do
+                @repository.slug == 'libgit2/libgit2'
+              end
+            end
+          end
+
+          sub_test_case 'stub and #slug' do
+            test 'stub #slug' do
+              @repository.expects(:remote_urls).returns([
+                'git@github.com:packsaddle/example-ruby-travis-ci.git'
+              ])
+              assert do
+                @repository.slug == 'packsaddle/example-ruby-travis-ci'
+              end
+            end
+            test 'stub2 #slug' do
+              @repository.expects(:remote_urls).returns([
+                'git://github.com/libgit2/libgit2.git',
+                'git://github.com/libgit2/rugged.git'
+              ])
+              assert do
+                @repository.slug == 'libgit2/libgit2'
+              end
             end
           end
         end
