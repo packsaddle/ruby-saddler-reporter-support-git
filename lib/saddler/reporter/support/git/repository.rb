@@ -38,7 +38,7 @@ module Saddler
           end
 
           def push_endpoint
-            env_push_endpoint || 'github.com'
+            (env_push_endpoint || 'github.com').chomp('/')
           end
 
           # e.g. 'github.com'
