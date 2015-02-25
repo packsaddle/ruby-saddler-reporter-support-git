@@ -32,6 +32,35 @@ module Saddler
             @git.object('HEAD')
           end
 
+          def merging_sha
+            merging_object.sha
+          end
+
+          # This for GitHub pull request diff file.
+          # if head is commit which already merged,
+          # head's parent objects include merging object
+          # and (master or origin/master)
+          def merging_object
+            return head unless merge_commit?(head)
+            commit = head.parents.select do |parent|
+              ![master.sha, origin_master.sha].include?(parent.sha)
+            end
+            return commit.last if commit.count == 1
+            head # fallback
+          end
+
+          def master
+            @git.object('master')
+          end
+
+          def origin_master
+            @git.object('origin/master')
+          end
+
+          def merge_commit?(commit)
+            commit.parents.count == 2
+          end
+
           def push_endpoint
             (env_push_endpoint || 'github.com').chomp('/')
           end
