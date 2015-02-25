@@ -78,6 +78,8 @@ module Saddler
               ENV['CURRENT_BRANCH']
             elsif ENV['TRAVIS_BRANCH']
               ENV['TRAVIS_BRANCH']
+            elsif ENV['CIRCLE_BRANCH']
+              ENV['CIRCLE_BRANCH']
             end
           end
         end
