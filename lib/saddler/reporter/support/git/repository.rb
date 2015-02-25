@@ -3,8 +3,10 @@ module Saddler
     module Support
       module Git
         class Repository
-          def initialize(path)
-            @git = ::Git.open(path)
+          attr_reader :git
+
+          def initialize(path, options = {})
+            @git = ::Git.open(path, options)
           end
 
           def slug
