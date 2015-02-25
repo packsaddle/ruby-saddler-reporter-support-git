@@ -32,6 +32,10 @@ module Saddler
             @git.object('HEAD')
           end
 
+          def merging_sha
+            head.sha
+          end
+
           def push_endpoint
             (env_push_endpoint || 'github.com').chomp('/')
           end
