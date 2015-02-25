@@ -10,10 +10,10 @@ module Saddler
           end
 
           def slug
-            regex_slug = %r{[[:alnum:]_\-\.]*/[[:alnum:]_\-\.]*}
-            regex = %r{.*?#{Regexp.quote(push_endpoint)}/(?<slug>#{regex_slug})}
+            slug_regex = %r{\A/?(?<slug>.*?)(?:\.git)?\Z}
             remote_urls.map do |url|
-              match = regex.match(strip_git_extension(url))
+              uri = Addressable::URI.parse(url)
+              match = slug_regex.match(uri.path)
               match[:slug] if match
             end.compact.first
           end
@@ -30,11 +30,6 @@ module Saddler
 
           def head
             @git.object('HEAD')
-          end
-
-          def strip_git_extension(name)
-            match = /\A(?<identity>.*?)(?:\.git)?\z/.match(name)
-            match[:identity] if match
           end
 
           def push_endpoint
