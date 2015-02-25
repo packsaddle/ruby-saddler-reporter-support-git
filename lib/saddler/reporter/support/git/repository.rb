@@ -34,6 +34,17 @@ module Saddler
 
           def merging_sha
             return head.sha unless merge_commit?(head)
+            this_sha = head.parents.map(&:sha) - [master.sha, origin_master.sha]
+            return *this_sha if this_sha.count == 1
+            head.sha # fallback
+          end
+
+          def master
+            @git.object('master')
+          end
+
+          def origin_master
+            @git.object('origin/master')
           end
 
           def merge_commit?(commit)
