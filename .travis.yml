@@ -13,7 +13,3 @@ notifications:
 branches:
   only:
     - master
-script: bundle exec rake --verbose
-matrix:
-  allow_failures:
-    - rvm: 2.2
