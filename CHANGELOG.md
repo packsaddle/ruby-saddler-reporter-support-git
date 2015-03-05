@@ -1,3 +1,7 @@
+### 0.1.7
+
+#### Features
+
 ### 0.1.6 (2015-03-06)
 
 * **slug:** revert: use uri-ssh_git if ssh protocol ([1509925](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/1509925b226eeff5245c04cff0a99039604c6f07))
