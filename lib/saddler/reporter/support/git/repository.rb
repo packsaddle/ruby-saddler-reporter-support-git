@@ -15,7 +15,7 @@ module Saddler
               if URI::SshGit.ssh_protocol?(url)
                 uri = URI::SshGit.parse(url)
               else
-                uri = URI.parse(url)
+                uri = Addressable::URI.parse(url)
               end
               match = slug_regex.match(uri.path)
               match[:slug] if match

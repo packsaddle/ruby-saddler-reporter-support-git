@@ -1,5 +1,5 @@
 require 'git'
-require 'uri'
+require 'addressable/uri'
 require 'uri/ssh_git'
 require 'saddler/reporter/support/git/version'
 require 'saddler/reporter/support/git/repository'
