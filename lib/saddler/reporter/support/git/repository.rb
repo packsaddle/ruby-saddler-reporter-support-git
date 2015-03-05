@@ -10,7 +10,7 @@ module Saddler
           end
 
           def slug
-            slug_regex = %r{\A/?(?<slug>.*?)(?:\.git)?\Z}
+            slug_regex = %r{\A/(?<slug>.*?)(?:\.git)?\Z}
             remote_urls.map do |url|
               if URI::SshGit.ssh_protocol?(url)
                 uri = URI::SshGit.parse(url)
