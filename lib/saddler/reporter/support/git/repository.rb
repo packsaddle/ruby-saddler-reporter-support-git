@@ -10,9 +10,9 @@ module Saddler
           end
 
           def slug
-            slug_regex = %r{\A/?(?<slug>.*?)(?:\.git)?\Z}
+            slug_regex = %r{\A/(?<slug>.*?)(?:\.git)?\Z}
             remote_urls.map do |url|
-              uri = Addressable::URI.parse(url)
+              uri = GitCloneUrl.parse(url)
               match = slug_regex.match(uri.path)
               match[:slug] if match
             end.compact.first
