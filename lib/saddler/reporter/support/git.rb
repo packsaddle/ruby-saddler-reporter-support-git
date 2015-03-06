@@ -1,5 +1,5 @@
 require 'git'
-require 'addressable/uri'
+require 'git_clone_url'
 require 'saddler/reporter/support/git/version'
 require 'saddler/reporter/support/git/repository'
 
