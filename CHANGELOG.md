@@ -1,3 +1,7 @@
+### 0.1.8
+
+#### Features
+
 ### 0.1.7 (2015-03-06)
 
 * **slug:** use git_clone_url ([7576c4a](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/7576c4ad42c89e827ef31faa863645a5754f6426))
