@@ -1,23 +1,23 @@
-### 0.1.8
+## Change Log
 
-#### Features
+### v0.1.7 (2015/03/06 08:45 +00:00)
+- [#11](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/11) chore(gem): use git_clone_url (@sanemat)
 
-### 0.1.7 (2015-03-06)
+### v0.1.6 (2015/03/05 18:23 +00:00)
+- [#10](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/10) Revert "Merge pull request #9 from packsaddle/chore/use-uri-sshgit" (@sanemat)
 
-* **slug:** use git_clone_url ([7576c4a](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/7576c4ad42c89e827ef31faa863645a5754f6426))
+### v0.1.5 (2015/03/05 03:44 +00:00)
+- [#9](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/9) chore(gem): use uri-ssh_git instead of addressable if ssh protocol (@sanemat)
+- [#8](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/8) chore(travisci): power-assert v0.2.3 (@sanemat)
 
-### 0.1.6 (2015-03-06)
+### v0.1.4 (2015/02/26 05:53 +00:00)
+- [#7](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/7) feat(circleci): detect circle ci branch (@sanemat)
 
-* **slug:** revert: use uri-ssh_git if ssh protocol ([1509925](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/1509925b226eeff5245c04cff0a99039604c6f07))
+### v0.1.3 (2015/02/25 14:01 +00:00)
+- [#6](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/6) feat(merging object): add merging object implementation (@sanemat)
 
-### 0.1.5 (2015-03-05)
+### v0.1.2 (2015/02/25 09:44 +00:00)
+- [#4](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/4) Refactor/test git repo mocha (@sanemat)
 
-#### Fix
-
-* **slug:** use uri-ssh_git if ssh protocol ([90ad516](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/90ad516ccb5e39cdb374572fa43641383becdcfb))
-
-### 0.1.4 (2015-02-26)
-
-#### Features
-
-* **circleci:** detect circle-ci branch ([357c77f](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/357c77f75d783ce89c0c5a1fa367dcf4b04a59e1))
+### v0.1.1 (2015/02/24 17:37 +00:00)
+- [#1](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/1) feat(travis): add env current branch (@sanemat)
