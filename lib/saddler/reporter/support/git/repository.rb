@@ -43,18 +43,34 @@ module Saddler
           def merging_object
             return head unless merge_commit?(head)
             commit = head.parents.select do |parent|
-              ![master.sha, origin_master.sha].include?(parent.sha)
+              ![tracking.sha, origin_tracking.sha].include?(parent.sha)
             end
             return commit.last if commit.count == 1
             head # fallback
           end
 
-          def master
-            @git.object('master')
+          def tracking
+            @git.object(tracking_branch_name)
           end
 
-          def origin_master
-            @git.object('origin/master')
+          def origin_tracking
+            @git.object("origin/#{tracking_branch_name}")
+          end
+
+          # http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
+          # { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
+          # => "develop"
+          def tracking_branch_name
+            @git
+              .config
+              .select { |k, _| /\Abranch.*merge\Z/ =~ k }
+              .values
+              .map do |v|
+              match = %r{\Arefs/heads/(.*)\Z}.match(v)
+              match ? match[1] : nil
+            end.compact
+              .uniq
+              .shift
           end
 
           def merge_commit?(commit)
