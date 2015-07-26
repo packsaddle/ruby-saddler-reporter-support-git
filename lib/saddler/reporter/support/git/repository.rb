@@ -49,8 +49,18 @@ module Saddler
             head # fallback
           end
 
+          def master
+            warn "[DEPRECATION] `#{self.class.name}#master` is deprecated.  Please use `#tracking` instead."
+            tracking
+          end
+
           def tracking
             @git.object(tracking_branch_name)
+          end
+
+          def origin_master
+            warn "[DEPRECATION] `#{self.class.name}#origin_master` is deprecated.  Please use `#origin_tracking` instead."
+            origin_tracking
           end
 
           def origin_tracking
