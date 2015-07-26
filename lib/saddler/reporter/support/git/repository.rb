@@ -57,12 +57,15 @@ module Saddler
             @git.object("origin/#{tracking_branch_name}")
           end
 
+          def config
+            @git.config
+          end
+
           # http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
           # { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
           # => "develop"
           def tracking_branch_name
-            @git
-              .config
+            config
               .select { |k, _| /\Abranch.*merge\Z/ =~ k }
               .values
               .map do |v|
