@@ -78,6 +78,62 @@ module Saddler
               end
             end
           end
+
+          sub_test_case 'stub remote develop and #tracking_branch_name' do
+            test '#tracking_branch_name' do
+              @repository.expects(:config).returns(
+                {
+                  'user.name' => 'example',
+                  'user.email' => 'who@example.com',
+                  'push.default' =>'simple',
+                  'remote.origin.url' => 'git@github.com:example/example.com.git',
+                  'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*',
+                  'branch.develop.remote' => 'origin',
+                  'branch.develop.merge' => 'refs/heads/develop',
+                  'branch.spike/no-valid-master.remote' => 'origin',
+                  'branch.spike/no-valid-master.merge' => 'refs/heads/develop'
+                })
+              assert do
+                @repository.tracking_branch_name == 'develop'
+              end
+            end
+          end
+
+          sub_test_case 'stub remote master and #tracking_branch_name' do
+            test '#tracking_branch_name' do
+              @repository.expects(:config).returns(
+                {
+                  'user.name' => 'example',
+                  'user.email' => 'who@example.com',
+                  'push.default' =>'simple',
+                  'remote.origin.url' => 'git@github.com:example/example.com.git',
+                  'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*',
+                  'branch.develop.remote' => 'origin',
+                  'branch.develop.merge' => 'refs/heads/master',
+                  'branch.spike/no-valid-master.remote' => 'origin',
+                  'branch.spike/no-valid-master.merge' => 'refs/heads/master'
+                })
+              assert do
+                @repository.tracking_branch_name == 'master'
+              end
+            end
+          end
+
+          sub_test_case 'stub no remote and #tracking_branch_name' do
+            test '#tracking_branch_name' do
+              @repository.expects(:config).returns(
+                {
+                  'user.name' => 'example',
+                  'user.email' => 'who@example.com',
+                  'push.default' =>'simple',
+                  'remote.origin.url' => 'git@github.com:example/example.com.git',
+                  'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*'
+                })
+              assert do
+                @repository.tracking_branch_name == nil
+              end
+            end
+          end
         end
       end
     end
