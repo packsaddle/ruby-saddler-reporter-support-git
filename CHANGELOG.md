@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.1.8 (2015/07/27 00:01 +00:00)
+- [#16](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/16) fix(merging-sha): remove hard-corded branch name (@sanemat)
+- [#14](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/14) chore(gem): relax dependencies (@sanemat)
+- [#13](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/13) chore(changelog): use github-changes (@sanemat)
+
 ### v0.1.7 (2015/03/06 08:45 +00:00)
 - [#11](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/11) chore(gem): use git_clone_url (@sanemat)
 
