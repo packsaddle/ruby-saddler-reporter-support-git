@@ -97,7 +97,7 @@ module Saddler
           # e.g. 'github.com'
           # git@github.com:packsaddle/ruby-saddler-reporter-support-git.git
           def env_push_endpoint
-            ENV['PUSH_ENDPOINT'] if ENV['PUSH_ENDPOINT']
+            ENV['PUSH_ENDPOINT'] if ENV['PUSH_ENDPOINT'] && !ENV['PUSH_ENDPOINT'].empty?
           end
 
           def env_current_branch
