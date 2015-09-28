@@ -36,8 +36,7 @@ module Saddler
 
           test '#remote_urls' do
             assert do
-              @repository.remote_urls \
-                == [
+              @repository.remote_urls == [
                   'git://github.com/libgit2/libgit2.git',
                   'git://github.com/libgit2/rugged.git'
                 ]
@@ -91,17 +90,15 @@ module Saddler
           sub_test_case 'stub remote develop and #tracking_branch_name' do
             test '#tracking_branch_name' do
               @repository.expects(:config).returns(
-                {
-                  'user.name' => 'example',
-                  'user.email' => 'who@example.com',
-                  'push.default' =>'simple',
-                  'remote.origin.url' => 'git@github.com:example/example.com.git',
-                  'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*',
-                  'branch.develop.remote' => 'origin',
-                  'branch.develop.merge' => 'refs/heads/develop',
-                  'branch.spike/no-valid-master.remote' => 'origin',
-                  'branch.spike/no-valid-master.merge' => 'refs/heads/develop'
-                })
+                'user.name' => 'example',
+                'user.email' => 'who@example.com',
+                'push.default' => 'simple',
+                'remote.origin.url' => 'git@github.com:example/example.com.git',
+                'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*',
+                'branch.develop.remote' => 'origin',
+                'branch.develop.merge' => 'refs/heads/develop',
+                'branch.spike/no-valid-master.remote' => 'origin',
+                'branch.spike/no-valid-master.merge' => 'refs/heads/develop')
               assert do
                 @repository.tracking_branch_name == 'develop'
               end
@@ -111,17 +108,15 @@ module Saddler
           sub_test_case 'stub remote master and #tracking_branch_name' do
             test '#tracking_branch_name' do
               @repository.expects(:config).returns(
-                {
-                  'user.name' => 'example',
-                  'user.email' => 'who@example.com',
-                  'push.default' =>'simple',
-                  'remote.origin.url' => 'git@github.com:example/example.com.git',
-                  'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*',
-                  'branch.develop.remote' => 'origin',
-                  'branch.develop.merge' => 'refs/heads/master',
-                  'branch.spike/no-valid-master.remote' => 'origin',
-                  'branch.spike/no-valid-master.merge' => 'refs/heads/master'
-                })
+                'user.name' => 'example',
+                'user.email' => 'who@example.com',
+                'push.default' => 'simple',
+                'remote.origin.url' => 'git@github.com:example/example.com.git',
+                'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*',
+                'branch.develop.remote' => 'origin',
+                'branch.develop.merge' => 'refs/heads/master',
+                'branch.spike/no-valid-master.remote' => 'origin',
+                'branch.spike/no-valid-master.merge' => 'refs/heads/master')
               assert do
                 @repository.tracking_branch_name == 'master'
               end
@@ -131,15 +126,13 @@ module Saddler
           sub_test_case 'stub no remote and #tracking_branch_name' do
             test '#tracking_branch_name' do
               @repository.expects(:config).returns(
-                {
-                  'user.name' => 'example',
-                  'user.email' => 'who@example.com',
-                  'push.default' =>'simple',
-                  'remote.origin.url' => 'git@github.com:example/example.com.git',
-                  'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*'
-                })
+                'user.name' => 'example',
+                'user.email' => 'who@example.com',
+                'push.default' => 'simple',
+                'remote.origin.url' => 'git@github.com:example/example.com.git',
+                'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*')
               assert do
-                @repository.tracking_branch_name == nil
+                @repository.tracking_branch_name.nil?
               end
             end
           end
