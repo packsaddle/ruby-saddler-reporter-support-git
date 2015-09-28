@@ -37,9 +37,9 @@ module Saddler
           test '#remote_urls' do
             assert do
               @repository.remote_urls == [
-                  'git://github.com/libgit2/libgit2.git',
-                  'git://github.com/libgit2/rugged.git'
-                ]
+                'git://github.com/libgit2/libgit2.git',
+                'git://github.com/libgit2/rugged.git'
+              ]
             end
           end
 
