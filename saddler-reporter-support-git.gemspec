@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'git'
   spec.add_runtime_dependency 'git_clone_url'
+  spec.add_runtime_dependency 'env_branch'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'

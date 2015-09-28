@@ -103,13 +103,13 @@ module Saddler
           end
 
           def env_current_branch
-            if ENV['CURRENT_BRANCH']
-              ENV['CURRENT_BRANCH']
-            elsif ENV['TRAVIS_BRANCH']
-              ENV['TRAVIS_BRANCH']
-            elsif ENV['CIRCLE_BRANCH']
-              ENV['CIRCLE_BRANCH']
+            env_branch = EnvBranch.new do
+              if ENV['CURRENT_BRANCH'] &&
+                 !ENV['CURRENT_BRANCH'].empty?
+                ENV['CURRENT_BRANCH']
+              end
             end
+            env_branch.branch_name
           end
         end
       end

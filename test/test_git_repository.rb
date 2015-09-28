@@ -5,6 +5,15 @@ module Saddler
     module Support
       module Git
         class TestGitRepository < Test::Unit::TestCase
+          extend ::EnvBranch::TestHelper
+          def self.startup
+            stash_env_branch
+          end
+
+          def self.shutdown
+            restore_env_branch
+          end
+
           def setup
             @repository = Repository.new(
               REPO_PATH,
