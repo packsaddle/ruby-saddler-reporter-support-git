@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "github-changes": "^1.0.0",
+    "npm-check-updates": "^2.2.4"
+  },
+  "scripts": {
+    "changelog": "github-changes -o packsaddle -r ruby-saddler-reporter-support-git --only-pulls --use-commit-body",
+    "ncu": "ncu -u"
+  }
+}
