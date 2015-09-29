@@ -16,6 +16,7 @@ module Saddler
             @git = ::Git.open(path, options)
           end
 
+          # @return [String] `user/repo` from remote_urls
           def slug
             slug_regex = %r{\A/(?<slug>.*?)(?:\.git)?\Z}
             remote_urls.map do |url|
@@ -37,10 +38,12 @@ module Saddler
             env_current_branch || @git.current_branch
           end
 
+          # @return [::Git::Object] git object for `HEAD`
           def head
             @git.object('HEAD')
           end
 
+          # @return [String] merging_object's sha
           def merging_sha
             merging_object.sha
           end
@@ -49,6 +52,8 @@ module Saddler
           # if head is commit which already merged,
           # head's parent objects include merging object
           # and (master or origin/master)
+          #
+          # @return [::Git::Object] merging object
           def merging_object
             return head unless merge_commit?(head)
             commit = head.parents.select do |parent|
@@ -63,6 +68,7 @@ module Saddler
             tracking
           end
 
+          # @return [::Git::Object] git object for `tracking_branch_name`
           def tracking
             @git.object(tracking_branch_name)
           end
@@ -72,6 +78,7 @@ module Saddler
             origin_tracking
           end
 
+          # @return [::Git::Object] git object for `origin/tracking_branch_name`
           def origin_tracking
             @git.object("origin/#{tracking_branch_name}")
           end
@@ -81,9 +88,14 @@ module Saddler
             @git.config
           end
 
-          # http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
-          # { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
-          # => "develop"
+          # @example tracking branch
+          #   # from git config
+          #   { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
+          #   => "develop"
+          #
+          # @return [String] tracking branch name
+          #
+          # @see http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
           def tracking_branch_name
             config
               .select { |k, _| /\Abranch.*merge\Z/ =~ k }
@@ -96,6 +108,9 @@ module Saddler
               .shift
           end
 
+          # @param commit [::Git::Object]
+          #
+          # @return [Boolean] true if commit is a merge commit
           def merge_commit?(commit)
             commit.parents.count == 2
           end
@@ -106,7 +121,7 @@ module Saddler
           end
 
           # @example via ssh
-          #   git@github.com:packsaddle/ruby-saddler-reporter-support-git.git
+          #   'git@github.com:packsaddle/ruby-saddler-reporter-support-git.git'
           #   #=> 'github.com'
           #
           # @return [String, nil] push endpoint from env
