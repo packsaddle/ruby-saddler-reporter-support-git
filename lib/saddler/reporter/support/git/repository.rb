@@ -7,11 +7,15 @@ module Saddler
           attr_reader :git
           # @!attribute [r] git
           #   @return [::Git] git repository object
+          #
+          #   @see https://github.com/schacon/ruby-git
 
           # Build git repository support utility object
           #
           # @param path [String] working_dir
           # @param options [Hash] Git.open options (see ::Git.open)
+          #
+          # @see https://github.com/schacon/ruby-git
           def initialize(path, options = {})
             @git = ::Git.open(path, options)
           end
@@ -74,6 +78,8 @@ module Saddler
           end
 
           # @return [::Git::Config] git config instance
+          #
+          # @see https://github.com/schacon/ruby-git
           def config
             @git.config
           end
