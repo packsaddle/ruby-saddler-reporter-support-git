@@ -1,10 +1,11 @@
 {
   "devDependencies": {
-    "github-changes": "^1.0.0",
-    "npm-check-updates": "^2.2.4"
+    "conventional-changelog": "^0.4.3",
+    "npm-check-updates": "^2.2.4",
+    "urijs": "^1.16.1"
   },
   "scripts": {
-    "changelog": "github-changes -o packsaddle -r ruby-saddler-reporter-support-git --only-pulls --use-commit-body",
+    "changelog": "conventional-changelog -i CHANGELOG.md --overwrite --preset angular --context .conventional-changelog.context.js",
     "ncu": "ncu -u"
   }
 }
