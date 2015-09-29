@@ -7,8 +7,8 @@ require 'saddler/reporter/support/git/repository'
 module Saddler
   module Reporter
     module Support
+      # Git support utility for saddler-reporter
       module Git
-        # Your code goes here...
       end
     end
   end

@@ -2,9 +2,16 @@ module Saddler
   module Reporter
     module Support
       module Git
+        # Git repository support utility for saddler-reporter
         class Repository
           attr_reader :git
+          # @!attribute [r] git
+          #   @return [::Git] git repository object
 
+          # Build git repository support utility object
+          #
+          # @param path [String] working_dir
+          # @param options [Hash] Git.open options (see ::Git.open)
           def initialize(path, options = {})
             @git = ::Git.open(path, options)
           end
@@ -18,12 +25,14 @@ module Saddler
             end.compact.first
           end
 
+          # @return [Array<String>] remote urls
           def remote_urls
             @git
               .remotes
               .map(&:url)
           end
 
+          # @return [String] current branch name
           def current_branch
             env_current_branch || @git.current_branch
           end
@@ -67,6 +76,7 @@ module Saddler
             @git.object("origin/#{tracking_branch_name}")
           end
 
+          # @return [::Git::Config] git config instance
           def config
             @git.config
           end
@@ -90,16 +100,21 @@ module Saddler
             commit.parents.count == 2
           end
 
+          # @return [String] push endpoint (defaults to: 'github.com')
           def push_endpoint
             (env_push_endpoint || 'github.com').chomp('/')
           end
 
-          # e.g. 'github.com'
-          # git@github.com:packsaddle/ruby-saddler-reporter-support-git.git
+          # @example via ssh
+          #   git@github.com:packsaddle/ruby-saddler-reporter-support-git.git
+          #   #=> 'github.com'
+          #
+          # @return [String, nil] push endpoint from env
           def env_push_endpoint
             ENV['PUSH_ENDPOINT'] if ENV['PUSH_ENDPOINT'] && !ENV['PUSH_ENDPOINT'].empty?
           end
 
+          # @return [String, nil] current branch name from env
           def env_current_branch
             env_branch = EnvBranch.new do
               if ENV['CURRENT_BRANCH'] &&
