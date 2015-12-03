@@ -1,3 +1,9 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v0.2.0...v0.2.1) (2015-12-03)
+
+* **deps:** cap dependencies.
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v0.1.8...v0.2.0) (2015-09-29)
 
