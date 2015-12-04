@@ -85,6 +85,14 @@ module Saddler
                 @repository.slug == 'sanemat/sanemat.github.com'
               end
             end
+            test 'stub5 #slug' do
+              @repository.expects(:remote_urls).returns([
+                'github.com:/sanemat/sanemat.github.com.git'
+              ])
+              assert do
+                @repository.slug == 'sanemat/sanemat.github.com'
+              end
+            end
           end
 
           sub_test_case 'stub remote develop and #tracking_branch_name' do
