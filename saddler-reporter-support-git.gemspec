@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'git', '>= 1.0', '< 2.0'
-  spec.add_runtime_dependency 'git_clone_url', '>= 2.0.pre', '< 3.0'
+  spec.add_runtime_dependency 'git_clone_url', '>= 2.0', '< 3.0'
   spec.add_runtime_dependency 'env_branch', '>= 0.2', '< 0.3'
 
   spec.add_development_dependency 'bundler'
