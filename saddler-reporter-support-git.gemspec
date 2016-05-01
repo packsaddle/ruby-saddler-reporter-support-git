@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'git', '>= 1.0', '< 2.0'
   spec.add_runtime_dependency 'git_clone_url', '>= 2.0', '< 3.0'
-  spec.add_runtime_dependency 'env_branch', '>= 0.2', '< 0.3'
+  spec.add_runtime_dependency 'env_branch', '>= 1.0'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
