@@ -1,3 +1,9 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v0.3.0...v1.0.0) (2016-05-01)
+
+* It's time to release stable!
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v0.2.1...v0.3.0) (2016-01-04)
 
