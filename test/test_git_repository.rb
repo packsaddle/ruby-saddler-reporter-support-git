@@ -53,42 +53,52 @@ module Saddler
 
           sub_test_case 'stub and #slug' do
             test 'stub1 #slug' do
-              @repository.expects(:remote_urls).returns([
-                'git@github.com:packsaddle/example-ruby-travis-ci.git'
-              ])
+              @repository.expects(:remote_urls).returns(
+                [
+                  'git@github.com:packsaddle/example-ruby-travis-ci.git'
+                ]
+              )
               assert do
                 @repository.slug == 'packsaddle/example-ruby-travis-ci'
               end
             end
             test 'stub2 #slug' do
-              @repository.expects(:remote_urls).returns([
-                'git://github.com/libgit2/libgit2.git',
-                'git://github.com/libgit2/rugged.git'
-              ])
+              @repository.expects(:remote_urls).returns(
+                [
+                  'git://github.com/libgit2/libgit2.git',
+                  'git://github.com/libgit2/rugged.git'
+                ]
+              )
               assert do
                 @repository.slug == 'libgit2/libgit2'
               end
             end
             test 'stub3 #slug' do
-              @repository.expects(:remote_urls).returns([
-                'git@github.com:sanemat/sanemat.github.com.git'
-              ])
+              @repository.expects(:remote_urls).returns(
+                [
+                  'git@github.com:sanemat/sanemat.github.com.git'
+                ]
+              )
               assert do
                 @repository.slug == 'sanemat/sanemat.github.com'
               end
             end
             test 'stub4 #slug' do
-              @repository.expects(:remote_urls).returns([
-                'https://github.com/sanemat/sanemat.github.com.git'
-              ])
+              @repository.expects(:remote_urls).returns(
+                [
+                  'https://github.com/sanemat/sanemat.github.com.git'
+                ]
+              )
               assert do
                 @repository.slug == 'sanemat/sanemat.github.com'
               end
             end
             test 'stub5 #slug' do
-              @repository.expects(:remote_urls).returns([
-                'github.com:/sanemat/sanemat.github.com.git'
-              ])
+              @repository.expects(:remote_urls).returns(
+                [
+                  'github.com:/sanemat/sanemat.github.com.git'
+                ]
+              )
               assert do
                 @repository.slug == 'sanemat/sanemat.github.com'
               end
