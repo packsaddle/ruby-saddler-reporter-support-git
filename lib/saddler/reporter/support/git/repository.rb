@@ -92,7 +92,7 @@ module Saddler
           # @return [String] tracking branch name
           #
           # @see http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
-          def tracking_branch_name
+          def git_tracking_branch_name
             config
               .select { |k, _| /\Abranch.*merge\Z/ =~ k }
               .values
