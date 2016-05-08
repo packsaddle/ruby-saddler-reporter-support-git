@@ -84,6 +84,12 @@ module Saddler
             @git.config
           end
 
+          # @return [String] tracking branch name
+          def tracking_branch_name
+            @tracking_branch_name ||=
+                git_tracking_branch_name
+          end
+
           # @example tracking branch
           #   # from git config
           #   { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
