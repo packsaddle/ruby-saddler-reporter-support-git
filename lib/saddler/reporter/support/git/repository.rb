@@ -87,7 +87,16 @@ module Saddler
           # @return [String] tracking branch name
           def tracking_branch_name
             @tracking_branch_name ||=
-                git_tracking_branch_name
+              env_tracking_branch_name ||
+              git_tracking_branch_name
+          end
+
+          # @return [String, nil] tracking branch name from env
+          def env_tracking_branch_name
+            # GitHub pull request builder plugin (for Jenkins)
+            if ENV['ghprbTargetBranch'] && !ENV['ghprbTargetBranch'].empty?
+              ENV['ghprbTargetBranch']
+            end
           end
 
           # @example tracking branch
