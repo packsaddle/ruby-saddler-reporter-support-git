@@ -84,7 +84,7 @@ module Saddler
             @git.config
           end
 
-          # @return [String] tracking branch name
+          # @return [String, nil] tracking branch name
           def tracking_branch_name
             @tracking_branch_name ||=
               env_tracking_branch_name ||
@@ -104,7 +104,7 @@ module Saddler
           #   { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
           #   => "develop"
           #
-          # @return [String] tracking branch name
+          # @return [String, nil] tracking branch name
           #
           # @see http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
           def git_tracking_branch_name
