@@ -84,15 +84,30 @@ module Saddler
             @git.config
           end
 
+          # @return [String, nil] tracking branch name
+          def tracking_branch_name
+            @tracking_branch_name ||=
+              env_tracking_branch_name ||
+              git_tracking_branch_name
+          end
+
+          # @return [String, nil] tracking branch name from env
+          def env_tracking_branch_name
+            # GitHub pull request builder plugin (for Jenkins)
+            if ENV['ghprbTargetBranch'] && !ENV['ghprbTargetBranch'].empty?
+              ENV['ghprbTargetBranch']
+            end
+          end
+
           # @example tracking branch
           #   # from git config
           #   { "branch.spike/no-valid-master.merge" => "refs/heads/develop" }
           #   => "develop"
           #
-          # @return [String] tracking branch name
+          # @return [String, nil] tracking branch name
           #
           # @see http://stackoverflow.com/questions/4950725/how-do-i-get-git-to-show-me-which-branches-are-tracking-what
-          def tracking_branch_name
+          def git_tracking_branch_name
             config
               .select { |k, _| /\Abranch.*merge\Z/ =~ k }
               .values
