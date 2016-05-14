@@ -2,6 +2,9 @@ module Saddler
   module Reporter
     module Support
       module Git
+        # No tracking branch name
+        class NoTrackingBranchNameError < ArgumentError; end
+
         # Git repository support utility for saddler-reporter
         class Repository
           attr_reader :git
@@ -86,9 +89,11 @@ module Saddler
 
           # @return [String, nil] tracking branch name
           def tracking_branch_name
-            @tracking_branch_name ||=
-              env_tracking_branch_name ||
-              git_tracking_branch_name
+            @tracking_branch_name ||= begin
+                                          name = env_tracking_branch_name || git_tracking_branch_name
+                                          raise NoTrackingBranchNameError if !name || name.empty?
+                                          name
+                                        end
           end
 
           # @return [String, nil] tracking branch name from env
