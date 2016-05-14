@@ -83,6 +83,8 @@ module Saddler
             @git.object(target)
           end
 
+          # @param target [#sha]
+          #
           # @return [String, nil] object's sha
           def dig_sha(target)
             target && target.sha
@@ -103,7 +105,9 @@ module Saddler
             @git.config
           end
 
-          # @return [String, nil] tracking branch name
+          # @return [String] tracking branch name
+          #
+          # @raise [NoTrackingBranchNameError] if there is no tracking branch name
           def tracking_branch_name
             @tracking_branch_name ||= begin
                                           name = env_tracking_branch_name || git_tracking_branch_name
