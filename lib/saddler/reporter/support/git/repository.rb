@@ -64,20 +64,36 @@ module Saddler
           def merging_object
             return head unless merge_commit?(head)
             commit = head.parents.select do |parent|
-              ![tracking.sha, origin_tracking.sha].include?(parent.sha)
+              ![dig_sha(tracking), dig_sha(origin_tracking)].compact.include?(parent.sha)
             end
             return commit.last if commit.count == 1
             head # fallback
           end
 
-          # @return [::Git::Object] git object for `tracking_branch_name`
-          def tracking
-            @git.object(tracking_branch_name)
+          # @return [::Git::Branches] git branches
+          def git_branches
+            @git_branches ||= @git.branches
           end
 
-          # @return [::Git::Object] git object for `origin/tracking_branch_name`
+          # @return [::Git::Object, nil] git object for `tracking_branch_name`
+          def tracking
+            target = tracking_branch_name
+            return unless git_branches[target]
+
+            @git.object(target)
+          end
+
+          # @return [String, nil] object's sha
+          def dig_sha(target)
+            target && target.sha
+          end
+
+          # @return [::Git::Object, nil] git object for `origin/tracking_branch_name`
           def origin_tracking
-            @git.object("origin/#{tracking_branch_name}")
+            target = "origin/#{tracking_branch_name}"
+            return unless git_branches[target]
+
+            @git.object(target)
           end
 
           # @return [::Git::Config] git config instance
