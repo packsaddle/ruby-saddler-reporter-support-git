@@ -154,6 +154,42 @@ module Saddler
               end
             end
           end
+
+          sub_test_case '#tracking_branch_name' do
+            test 'raise error' do
+              @repository.stubs(:git_tracking_branch_name).returns(nil)
+              assert_raise(NoTrackingBranchNameError) do
+                @repository.tracking_branch_name
+              end
+            end
+            test 'env value over config value' do
+              git_config_tracking_branch = 'git_config_tracking_branch'
+              env_tracking_branch = 'env_tracking_branch'
+              @repository.stubs(:git_tracking_branch_name).returns(git_config_tracking_branch)
+              @repository.stubs(:env_tracking_branch_name).returns(env_tracking_branch)
+              assert do
+                @repository.tracking_branch_name == env_tracking_branch
+              end
+            end
+            test 'env value' do
+              git_config_tracking_branch = nil
+              env_tracking_branch = 'env_tracking_branch'
+              @repository.stubs(:git_tracking_branch_name).returns(git_config_tracking_branch)
+              @repository.stubs(:env_tracking_branch_name).returns(env_tracking_branch)
+              assert do
+                @repository.tracking_branch_name == env_tracking_branch
+              end
+            end
+            test 'config value' do
+              git_config_tracking_branch = 'git_config_tracking_branch'
+              env_tracking_branch = nil
+              @repository.stubs(:git_tracking_branch_name).returns(git_config_tracking_branch)
+              @repository.stubs(:env_tracking_branch_name).returns(env_tracking_branch)
+              assert do
+                @repository.tracking_branch_name == git_config_tracking_branch
+              end
+            end
+          end
         end
       end
     end
