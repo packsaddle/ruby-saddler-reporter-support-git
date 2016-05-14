@@ -116,7 +116,8 @@ module Saddler
                 'branch.develop.remote' => 'origin',
                 'branch.develop.merge' => 'refs/heads/develop',
                 'branch.spike/no-valid-master.remote' => 'origin',
-                'branch.spike/no-valid-master.merge' => 'refs/heads/develop')
+                'branch.spike/no-valid-master.merge' => 'refs/heads/develop'
+              )
               assert do
                 @repository.git_tracking_branch_name == 'develop'
               end
@@ -134,7 +135,8 @@ module Saddler
                 'branch.develop.remote' => 'origin',
                 'branch.develop.merge' => 'refs/heads/master',
                 'branch.spike/no-valid-master.remote' => 'origin',
-                'branch.spike/no-valid-master.merge' => 'refs/heads/master')
+                'branch.spike/no-valid-master.merge' => 'refs/heads/master'
+              )
               assert do
                 @repository.git_tracking_branch_name == 'master'
               end
@@ -148,7 +150,8 @@ module Saddler
                 'user.email' => 'who@example.com',
                 'push.default' => 'simple',
                 'remote.origin.url' => 'git@github.com:example/example.com.git',
-                'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*')
+                'remote.origin.fetch' => '+refs/heads/*:refs/remotes/origin/*'
+              )
               assert do
                 @repository.git_tracking_branch_name.nil?
               end
