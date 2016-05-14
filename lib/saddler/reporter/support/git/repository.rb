@@ -103,7 +103,9 @@ module Saddler
             @git.config
           end
 
-          # @return [String, nil] tracking branch name
+          # @return [String] tracking branch name
+          #
+          # @raise [NoTrackingBranchNameError] if there is no tracking branch name
           def tracking_branch_name
             @tracking_branch_name ||= begin
                                           name = env_tracking_branch_name || git_tracking_branch_name
