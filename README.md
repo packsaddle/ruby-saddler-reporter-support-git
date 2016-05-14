@@ -21,6 +21,14 @@
 
 `bundle exec yard server -r` and `open http://localhost:8808`.
 
+## Confirmed
+
+We confirm this gem on
+
+* Travis-ci
+* Circle CI
+* GitHub pull request builder plugin (Jenkins)
+
 
 ## Changelog
 
