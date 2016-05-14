@@ -83,6 +83,8 @@ module Saddler
             @git.object(target)
           end
 
+          # @param target [#sha]
+          #
           # @return [String, nil] object's sha
           def dig_sha(target)
             target && target.sha
