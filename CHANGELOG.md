@@ -1,3 +1,20 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v1.0.0...v2.0.0) (2016-05-14)
+
+* Support GitHub pull request builder plugin for Jenkins users!
+
+
+### Bug Fixes
+
+* **repository:** consider invalid object name([d96c1a9](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/d96c1a9)), closes [#39](https://github.com/packsaddle/ruby-saddler-reporter-support-git/issues/39)
+
+
+### Features
+
+* **repository:** add env_tracking_branch_name([9d0ba44](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/9d0ba44))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v0.3.0...v1.0.0) (2016-05-01)
 
