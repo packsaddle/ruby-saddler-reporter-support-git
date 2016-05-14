@@ -154,6 +154,13 @@ module Saddler
               end
             end
           end
+
+          test '#tracking_branch_name' do
+            @repository.expects(:git_tracking_branch_name).returns(nil)
+            assert_raise(NoTrackingBranchNameError) do
+              @repository.tracking_branch_name
+            end
+          end
         end
       end
     end
