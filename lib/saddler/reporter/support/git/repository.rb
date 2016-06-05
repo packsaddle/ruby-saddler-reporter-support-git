@@ -63,8 +63,15 @@ module Saddler
           # @return [::Git::Object] merging object
           def merging_object
             return head unless merge_commit?(head)
-            commit = head.parents.select do |parent|
-              ![dig_sha(tracking), dig_sha(origin_tracking)].compact.include?(parent.sha)
+            if ENV['ghprbActualCommit'] && !ENV['ghprbActualCommit'].empty?
+              # GitHub pull request builder plugin (for Jenkins)
+              commit = head.parents.select do |parent|
+                parent.sha == ENV['ghprbActualCommit']
+              end
+            else
+              commit = head.parents.select do |parent|
+                ![dig_sha(tracking), dig_sha(origin_tracking)].compact.include?(parent.sha)
+              end
             end
             return commit.last if commit.count == 1
             head # fallback
