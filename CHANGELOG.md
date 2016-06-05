@@ -1,3 +1,9 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v2.0.0...v2.0.1) (2016-06-05)
+
+* **repository:** Fix jenkins error: "commit_id is not part of the pull request"([3724bab](https://github.com/packsaddle/ruby-saddler-reporter-support-git/commit/3724bab)), fixes [#44](https://github.com/packsaddle/ruby-saddler-reporter-support-git/pull/44)
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/packsaddle/ruby-saddler-reporter-support-git/compare/v1.0.0...v2.0.0) (2016-05-14)
 
